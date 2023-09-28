@@ -1,0 +1,45 @@
+# Growth Team Challenge
+
+Chains Leaderboard
+
+### Background:
+
+Lava Protocol is a decentralised RPC access infrastructure that in a nutshell gives developers to
+interact with rpc providers for different chains. After the developer paired with providers and
+passed relays, the provider is reporting about the work that was done back to the blockchain
+and ask for payment.
+
+### The Task:
+
+Build a web-app that show the top 10 chains on lava by the number of relays pass in Lava
+Blockchain in the last 20 blocks.
+
+Requirement:
+
+- Sync data from the previous 20 blocks once the user load the screen
+- Show the data in two columns:
+  - Chain Name
+  - Number of relays
+- Watch for new blocks - Every new block, remove the oldest block in your data and
+  update the table on the fly
+  Guidelines:
+- You may use any frontend framework you like (preferably React).
+- You may use any UI Kit you like (Chakra/MUI/tailwind/etc...).
+- No backend code is required.
+- The code should be explained thoroughly with comments.
+- Please include a Readme.md with your explanations and a walkthrough of how to run
+  and participate.
+- The project should be plug-and-play, without any extra configuration.
+
+### Hints:
+
+- Use gateway.lavanet.xyz to get API Access to Lava blockchain
+- MsgRelayPayment is the relevant message on the transaction
+  - Inside there are
+    [relays](https://github.com/lavanet/lava/blob/5d3f1d5e2b3bf0b1dc2b4b7014cfb8c44d51b2ea/proto/pairing/tx.proto#LL66C14-L66C14)
+    from type of
+    [RelaySession](https://github.com/lavanet/lava/blob/5d3f1d5e2b3bf0b1dc2b4b7014cfb8c44d51b2ea/proto/pairing/relay.proto#LL14C13-L14C13)
+    with relay_num property which holds the aggregated amount of relays in each payment transaction.
+  - You have to decode the transaction from the block:
+    - [see this tutorial for how to decode transactions](https://tutorials.cosmos.network/tutorials/7-cosmjs/2-first-steps.html)
+    - [use LavaSDK to decode the MsgRelayPayment](https://github.com/lavanet/lava/tree/main/ecosystem/lava-sdk)
